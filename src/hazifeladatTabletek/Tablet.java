@@ -79,16 +79,32 @@ public class Tablet {
 	/* =======> Konstruktorok <======= */
 	
 	// Konstruktor 6 mezõvel
-	public Tablet(int resXIndex, int resYIndex, boolean kamera, boolean gps, double androidV, int ar) {
+	public Tablet(int resXIndex, int resYIndex, boolean kamera, boolean gps, double androidV, int ar) throws Exception {
+		setResX(resXIndex);
+		setResY(resYIndex);
+		setVanKamera(kamera);
+		setVanGps(gps);
+		setAndroidVerzio(androidV);
+		setAr(ar);
 		
 	}
 	// Konstruktor 4 mezõvel
-	public Tablet(int resXIndex, int resYIndex, double android, int ar) {
-		
+	public Tablet(int resXIndex, int resYIndex, double android, int ar) throws Exception {
+		setResX(resXIndex);
+		setResY(resYIndex);
+		vanKamera = false;
+		vanGps = false;
+		setAndroidVerzio(android);
+		setAr(ar);
 	}
 	// Konstruktor ahol csak az ár van megadva, minden más a minimális lehetséges értéken
-	public Tablet(int ar) {
-		
+	public Tablet(int ar) throws Exception {
+		resX = resXArray[0];
+		resY = resYArray[0];
+		vanKamera = false;
+		vanGps = false;
+		androidVerzio = androidVerzioArray[0];
+		setAr(ar);
 	}
 
 }
