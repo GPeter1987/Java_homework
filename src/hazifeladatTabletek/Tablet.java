@@ -1,14 +1,16 @@
 package hazifeladatTabletek;
 
+import java.util.Random;
+
 public class Tablet {
 	
 	
 	/**
 	 * A felbontások csak párban szerepelhetnek. Ezt az azonos index megadással akarom elérni.
 	 */
-	private int[] resXArray = {640,800,1024}; // X felbontás ,egész szám
-	private int[] resYArray = {480,600,768}; // Y felbontás , egész szám
-	private double[] androidVerzioArray = {4.0, 4.1, 4.2}; // Csak ezek az android verziók valid értékek
+	private static int[] resXArray = {640,800,1024}; // X felbontás ,egész szám
+	private static int[] resYArray = {480,600,768}; // Y felbontás , egész szám
+	private static double[] androidVerzioArray = {4.0, 4.1, 4.2}; // Csak ezek az android verziók valid értékek
 	
 	private int resX;
 	private int resY;
@@ -20,9 +22,21 @@ public class Tablet {
 	
 	/* =======> Getterek & Setterek <======= */
 	
+	
+	public static int[] getResXArray() {
+		return resXArray;
+	}
+	public static int[] getResYArray() {
+		return resYArray;
+	}
+	public static double[] getAndroidVerzioArray() {
+		return androidVerzioArray;
+	}
+	
 	public int getResX() {
 		return resX;
 	}
+	
 	public void setResX(int resX) throws Exception {
 		if (resX == resXArray[0] || resX == resXArray[1] || resX == resXArray[2]) {
 		this.resX = resX;
@@ -106,5 +120,9 @@ public class Tablet {
 		androidVerzio = androidVerzioArray[0];
 		setAr(ar);
 	}
+	
+	
+	// Random tabletek  generálása
+	
 
 }
