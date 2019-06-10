@@ -24,13 +24,15 @@ public class Kutya {
 	
 	
 	
+	
+	
 	/* Getterek és setterek */
 	public faj getFajta() {
 		return fajta;
 	}
-	public void setFajta(faj f) {
+/*	public void setFajta(faj f) {
 		fajta = f;
-	}
+	} */
 	public boolean isHim() {
 		return him;
 	}
@@ -74,7 +76,7 @@ public class Kutya {
 
 	/*  Konstruktor  */
 	public Kutya(faj faj,boolean him,boolean torzskonyvezett,Kutya apa, Kutya mama, int kor) throws Exception {
-		setFajta(faj);
+		fajta = faj;
 		setHim(him);
 		setTorzskonyvezett(torzskonyvezett);
 		setKora(kor);
@@ -83,7 +85,7 @@ public class Kutya {
 	}
 	
 	public Kutya(faj faj, boolean him) {
-		setFajta(faj);
+		fajta = faj;
 		setHim(him);
 		torzskonyvezett = false;
 		kora = 1;
@@ -107,6 +109,7 @@ public class Kutya {
 			tud = true;
 		}
 		return tud;
+		
 	}
 	
 	/**
@@ -143,7 +146,7 @@ public class Kutya {
 	
 	@Override
 	public String toString() {
-		return "A kutya faja: " + fajta + "a kiskutya hím: " + him + " van törzskönyve: "
+		return "A kutya faja: " + fajta + " a kutya hím: " + him + " van törzskönyve: "
 				+ torzskonyvezett + " Kora: " + kora;
 	}
 
