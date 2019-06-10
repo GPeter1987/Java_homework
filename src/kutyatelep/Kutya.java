@@ -2,21 +2,20 @@ package kutyatelep;
 
 public class Kutya {
 	
-	enum faj {
+	private enum faj {
 		TERRIER,
 		BULLDOG,
 		SPANIEL,
 		VIZSLA
 	}
 	
-	faj terrier = faj.TERRIER;
-	faj bulldog = faj.BULLDOG;
-	faj spaniel = faj.SPANIEL;
-	faj vizsla = faj.VIZSLA;
+	
 	
 	private boolean him;
 	private boolean torzskonyvezett;
 	private int kora = 1;
+	private Kutya apa;
+	private Kutya anya;
 	
 	
 	
@@ -39,6 +38,27 @@ public class Kutya {
 	public void setKora(int kora) {
 		this.kora = kora;
 	}
+	public Kutya getApa() {
+		return apa;
+	}
+	public void setApa(Kutya k) throws Exception {
+		if(k == null) {
+			throw new Exception("Egyik szülõ(apa) sem lehet null.");
+		}else {
+			apa = k;
+		}
+	}
+	public Kutya getAnya() {
+		return anya;
+	}
+	public void setAnya(Kutya k) throws Exception {
+		if(k == null) {
+			throw new Exception("Egyik szülõ(anya) sem lehet null.");
+		}else {
+			apa = k;
+		}
+	}
+	
 
 
 	/*  Konstruktor  */
