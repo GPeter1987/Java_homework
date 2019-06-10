@@ -1,5 +1,9 @@
 package kutyatelep;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Kutya {
 	
 	private enum faj {
@@ -9,17 +13,24 @@ public class Kutya {
 		VIZSLA
 	}
 	
+	static Random rnd = new Random();
 	
-	
+	private faj fajta;
 	private boolean him;
 	private boolean torzskonyvezett;
 	private int kora = 1;
-	private Kutya apa;
-	private Kutya anya;
+	private Kutya apa = null;
+	private Kutya anya = null;
 	
 	
 	
 	/* Getterek és setterek */
+	public faj getFajta() {
+		return fajta;
+	}
+	public void setFajta(faj f) {
+		fajta = f;
+	}
 	public boolean isHim() {
 		return him;
 	}
@@ -42,7 +53,7 @@ public class Kutya {
 		return apa;
 	}
 	public void setApa(Kutya k) throws Exception {
-		if(k == null) {
+		if(k.isHim() != true) {
 			throw new Exception("Egyik szülõ(apa) sem lehet null.");
 		}else {
 			apa = k;
@@ -52,26 +63,32 @@ public class Kutya {
 		return anya;
 	}
 	public void setAnya(Kutya k) throws Exception {
-		if(k == null) {
+		if(k.isHim() != false) {
 			throw new Exception("Egyik szülõ(anya) sem lehet null.");
 		}else {
-			apa = k;
+			anya = k;
 		}
 	}
 	
 
 
 	/*  Konstruktor  */
-	public Kutya(faj faj,boolean him,boolean torzskonyvezett,Kutya apa, Kutya mama, int kor) {
-		
+	public Kutya(faj faj,boolean him,boolean torzskonyvezett,Kutya apa, Kutya mama, int kor) throws Exception {
+		setFajta(faj);
 		setHim(him);
 		setTorzskonyvezett(torzskonyvezett);
 		setKora(kor);
+		setApa(apa);
+		setAnya(mama);
 	}
 	
 	public Kutya(faj faj, boolean him) {
-		
+		setFajta(faj);
 		setHim(him);
+		torzskonyvezett = false;
+		kora = 1;
+		apa = null;
+		anya = null;
 	}
 	
 	/* Metódusok */
@@ -83,11 +100,8 @@ public class Kutya {
 	 * @return true vagy false
 	 */
 	public boolean tudszaporodni(Kutya p) {
-		boolean tud = true;
-		if(p.him == this.him && (p.terrier == this.terrier || 
-								 p.bulldog == this.bulldog || 
-								 p.spaniel == this.spaniel || 
-								 p.vizsla == this.vizsla)) {
+		boolean tud;
+		if(p.him == this.him || p.fajta != this.fajta) {
 			tud = false;
 		}else {
 			tud = true;
@@ -95,8 +109,42 @@ public class Kutya {
 		return tud;
 	}
 	
-	public void szaporodik(Kutya a) {
+	/**
+	 * Random számú kiskutyat hoz létre 4-8 közt.
+	 * A megadott szülõbõl plusz a jelenlegi pédányból
+	 * @param a => A másik kutya amivel szaporítani akarunk.
+	 * @throws Exception 
+	 */
+	public List<Kutya> szaporodik(Kutya a) throws Exception {
 		
+		
+		if(tudszaporodni(a)) {
+			
+			int kisKutyaSzam = rnd.nextInt(8 - 4) + 4;
+			boolean kisKutyaTorzskonyv = false;
+			
+			if(this.torzskonyvezett && a.torzskonyvezett) {
+				kisKutyaTorzskonyv = true;
+			}
+			List<Kutya> kisKutya = new ArrayList<Kutya>();
+			
+			for(int i =0; i < kisKutyaSzam; i++) {
+				boolean kisKutyaNeme = (rnd.nextInt(100-1)+1) < 50;
+				
+				Kutya kis_Kutya = new Kutya(this.fajta,kisKutyaNeme,kisKutyaTorzskonyv,a,this,1);
+				kisKutya.add(kis_Kutya);
+			}
+				return kisKutya;
+		}else{
+			return null;
+		}
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "A kutya faja: " + fajta + "a kiskutya hím: " + him + " van törzskönyve: "
+				+ torzskonyvezett + " Kora: " + kora;
 	}
 
 }
