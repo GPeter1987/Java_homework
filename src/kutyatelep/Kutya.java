@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Kutya {
 	
-	private enum faj {
+	public enum Faj {
 		TERRIER,
 		BULLDOG,
 		SPANIEL,
@@ -15,7 +15,7 @@ public class Kutya {
 	
 	static Random rnd = new Random();
 	
-	private faj fajta;
+	public Faj fajta;
 	private boolean him;
 	private boolean torzskonyvezett;
 	private int kora = 1;
@@ -24,13 +24,12 @@ public class Kutya {
 	
 	
 	
-	
-	
 	/* Getterek és setterek */
-	public faj getFajta() {
+	
+/*	public faj getFajta() {
 		return fajta;
 	}
-/*	public void setFajta(faj f) {
+	public void setFajta(faj f) {
 		fajta = f;
 	} */
 	public boolean isHim() {
@@ -75,8 +74,8 @@ public class Kutya {
 
 
 	/*  Konstruktor  */
-	public Kutya(faj faj,boolean him,boolean torzskonyvezett,Kutya apa, Kutya mama, int kor) throws Exception {
-		fajta = faj;
+	public Kutya(Faj fajta,boolean him,boolean torzskonyvezett,Kutya apa, Kutya mama, int kor) throws Exception {
+		this.fajta = fajta;
 		setHim(him);
 		setTorzskonyvezett(torzskonyvezett);
 		setKora(kor);
@@ -84,8 +83,8 @@ public class Kutya {
 		setAnya(mama);
 	}
 	
-	public Kutya(faj faj, boolean him) {
-		fajta = faj;
+	public Kutya(Faj fajta, boolean him) {
+		this.fajta = fajta;
 		setHim(him);
 		torzskonyvezett = false;
 		kora = 1;
@@ -108,6 +107,7 @@ public class Kutya {
 		}else {
 			tud = true;
 		}
+		//System.out.println(tud);    //ellenõrzés
 		return tud;
 		
 	}
@@ -137,7 +137,9 @@ public class Kutya {
 				Kutya kis_Kutya = new Kutya(this.fajta,kisKutyaNeme,kisKutyaTorzskonyv,a,this,1);
 				kisKutya.add(kis_Kutya);
 			}
+			//	System.out.println(kisKutya);
 				return kisKutya;
+			
 		}else{
 			return null;
 		}

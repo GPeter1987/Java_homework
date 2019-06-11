@@ -1,5 +1,8 @@
 package kutyatelep;
 
+import kutyatelep.Kutya.Faj;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -25,14 +28,62 @@ public class KutyaTelep {
 	public int getDarabszam() {
 		return kutyaLista.size();
 	}
-	
-	public int fajDarabszam(fajta) {
+	/***
+	 * 	Megmondja, hogy egy bizonyos fajból mennyi van a telepen
+	 * @return
+	 */
+	public int fajDarabszam(Faj a) {
 		int db = 0;
-		for(fajta : kutyaLista){
+		for(Kutya k : kutyaLista){
 			db++;
 		}
 		return db;
 	}
+	/**
+	 * 	Elhelyez egy kutyát a telepen
+	 * 	Egy fajtából nem lehet több mint 50 és nem lehet null
+	 * 	Visszatér egy boolean értékkel
+	 */
+	public boolean elhelyez(Kutya k) {
+		if(k == null) {
+			return false;
+		}
+		if(fajDarabszam(k.fajta)>= 50) {
+			return false;
+		}
+		kutyaLista.add(k);
+		return true;
+	}
+	/**
+	 * Lekerdezi az adott sorszámú kutyapéldányt
+	 */
+	public Kutya lekerdez(int index) {
+		
+		return kutyaLista;
+	}
 	
-
+	/**
+	 * Egy évet öregít a telepen
+	 */
+	public void elteltEgyEv() {
+		List<Kutya> torlendok = new ArrayList<Kutya>();
+		for(Kutya k : kutyaLista) {
+			k.setKora(k.getKora() + 1);
+			// elpusztuló kutyák
+			if(k.getKora() * 5 > rnd.nextInt(100-1)+1) {
+				torlendok.add(k);
+			}
+		}
+		for(Kutya p : torlendok) {
+			kutyaLista.remove(p);
+		}
+	}
+	
+	/**
+	 * Konstruktor
+	 */
+	public KutyaTelep(int max) {
+		maxLetszam = max;
+		kutyaLista = new ArrayList<Kutya>();
+	}
 }
