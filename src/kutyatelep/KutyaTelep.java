@@ -59,7 +59,7 @@ public class KutyaTelep {
 	 */
 	public Kutya lekerdez(int index) {
 		
-		return kutyaLista;
+		return kutyaLista[index];
 	}
 	
 	/**
