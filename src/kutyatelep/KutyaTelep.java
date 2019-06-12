@@ -58,8 +58,13 @@ public class KutyaTelep {
 	 * Lekerdezi az adott sorszámú kutyapéldányt
 	 */
 	public Kutya lekerdez(int index) {
+		/*Kutya[] lekerdez = new Kutya[kutyaLista.size()];
+		for(int i = 0; i < kutyaLista.size();i++) {
+			lekerdez[i] = kutyaLista.get(i);
+		}
+		//System.out.println(lekerdez[index]); */
+		return kutyaLista.get(index);
 		
-		return kutyaLista[index];
 	}
 	
 	/**
