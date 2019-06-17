@@ -35,7 +35,9 @@ public class KutyaTelep {
 	public int fajDarabszam(Faj a) {
 		int db = 0;
 		for(Kutya k : kutyaLista){
-			db++;
+			if(k.fajta==a) {
+				db++;
+			}
 		}
 		return db;
 	}
@@ -52,19 +54,23 @@ public class KutyaTelep {
 			return false;
 		}
 		kutyaLista.add(k);
+		darabszam++;
 		return true;
 	}
 	/**
 	 * Lekerdezi az adott sorszámú kutyapéldányt
 	 */
 	public Kutya lekerdez(int index) {
-		/*Kutya[] lekerdez = new Kutya[kutyaLista.size()];
+		Kutya[] lekerdez = new Kutya[kutyaLista.size()];
 		for(int i = 0; i < kutyaLista.size();i++) {
 			lekerdez[i] = kutyaLista.get(i);
 		}
-		//System.out.println(lekerdez[index]); */
+		//System.out.println(lekerdez[index]); 
+		if(0<=index && index<kutyaLista.size()) {
 		return kutyaLista.get(index);
-		
+		}else {
+			return null;
+		}
 	}
 	
 	/**
@@ -81,7 +87,9 @@ public class KutyaTelep {
 		}
 		for(Kutya p : torlendok) {
 			kutyaLista.remove(p);
+			darabszam--;
 		}
+		System.out.println(torlendok.size()+" kutya pusztult el");
 	}
 	
 	/**
@@ -89,6 +97,7 @@ public class KutyaTelep {
 	 */
 	public KutyaTelep(int max) {
 		maxLetszam = max;
+		minLetszam = 5;
 		kutyaLista = new ArrayList<Kutya>();
 	}
 }

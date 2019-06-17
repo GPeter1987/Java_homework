@@ -1,12 +1,14 @@
 package franciaSakk;
 
-public class Gyalog extends Cella implements Babuk{
+public class Gyalog extends Cella implements Sakk{
 	
 	
 	
 
 	public Gyalog(int x, int y) throws Exception {
 		super(x, y);
+		this.pozicio[0] = x;
+		this.pozicio[1] = y;
 		
 	}
 
@@ -22,9 +24,6 @@ public class Gyalog extends Cella implements Babuk{
 		
 	}
 
-	@Override
-	public void pozicio() {
-		
-	}
+	
 
 }

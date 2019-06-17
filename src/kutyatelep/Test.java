@@ -11,9 +11,9 @@ public class Test {
 	static Random rnd = new Random();
 
 	public static void main(String[] args) throws Exception  {
-		/*Kutya elso = new Kutya(Faj.BULLDOG, true);
-		Kutya masodik = new Kutya(Faj.BULLDOG, false);
-		Kutya kicsi = new Kutya(Faj.BULLDOG,true,false,elso,masodik,1);
+	//	Kutya elso = new Kutya(Faj.BULLDOG, true);
+	//	Kutya masodik = new Kutya(Faj.BULLDOG, false);
+		/*Kutya kicsi = new Kutya(Faj.BULLDOG,true,false,elso,masodik,1);
 		
 		System.out.println(elso);
 		System.out.println(masodik);
@@ -29,7 +29,10 @@ public class Test {
 		KutyaTelep ktelep = new KutyaTelep(180);
 		
 		/*TEST*/
-		ktelep.darabszam++;
+	//	ktelep.elhelyez(elso);
+	//	ktelep.darabszam++;
+	//	ktelep.elhelyez(masodik);
+	//	ktelep.darabszam++;
 		System.out.println(ktelep.darabszam);
 		
 		/**
@@ -70,7 +73,8 @@ public class Test {
 			Kutya bloki = new Kutya(kFaja,rNem);
 			bloki.setKora(rEletkor);
 			bloki.setTorzskonyvezett(rTorzskonyv);
-			ktelep.elhelyez(bloki);	
+			ktelep.elhelyez(bloki);
+			//ktelep.darabszam++;
 		}
 		/**
 		 *  100 kísérletet tesz a szaporításra random 2 kutyával
@@ -98,27 +102,54 @@ public class Test {
 			List<Kutya> kisKutyaAkikNem = new ArrayList<Kutya>();
 			List<Kutya> kisKutyaLista = new ArrayList<Kutya>();
 			int szaporulat = 0;
+			int elhelyezett = 0;
 			
 			for(int i = 0; i < 100; i++) {
 				int k1 = rnd.nextInt(ktelep.darabszam);
 				int k2 = rnd.nextInt(180 - ktelep.darabszam)+ ktelep.darabszam;
-				if(k1 == k2) {
-					Kutya k1Kutya = ktelep.lekerdez(k1);
-					Kutya k2Kutya = ktelep.lekerdez(k2);
-					kisKutyaLista = k1Kutya.szaporodik(k2Kutya);
-				}
+				
+				k2 = k1;
+				while(k2 == k1) {
+				 	k2 = rnd.nextInt(ktelep.darabszam);
+				 }
+				Kutya k1Kutya, k2Kutya;
+                if(ktelep.lekerdez(k1)!=null){
+                    k1Kutya = ktelep.lekerdez(k1);
+                }
+                else{
+                    System.err.println("Baj van, "+(k1+1)+". kutyát próbáljuk lekérdezni, összesen "+ktelep.getDarabszam()+" kutya van a listában.");
+                    k1Kutya=ktelep.lekerdez(0);
+                }
+
+                
+                if(ktelep.lekerdez(k2)!=null){
+                    k2Kutya = ktelep.lekerdez(k2);
+                }
+                else{
+                    System.err.println("Baj van, "+(k2+1)+". kutyát próbáljuk lekérdezni, összesen "+ktelep.getDarabszam()+" kutya van a listában.");
+                    k2Kutya=ktelep.lekerdez(1);
+                }
+                //System.out.println((i+1)+". szaporítási kísérlet: A vizsgálandó kutyák: "+k1+" és "+k2);
+                kisKutyaLista = k1Kutya.szaporodik(k2Kutya);
+	
 				if(kisKutyaLista != null) {
 					szaporulat += kisKutyaLista.size();
 					for(Kutya k : kisKutyaLista) {
-						if(!(ktelep.getMaxLetszam() - 8 > ktelep.darabszam)&& ktelep.elhelyez(k)) {
+						if(!(ktelep.getMaxLetszam() - 8 >= ktelep.darabszam)) {
 							kisKutyaAkikNem.add(k);
+						}else {
+							if(ktelep.elhelyez(k)) {
+								elhelyezett++;
+							}
 						}
 					}
+					kisKutyaLista.clear();
 				}
 			}
 			
 			ktelep.elteltEgyEv();
 			System.out.println("A szaporulat: " + szaporulat);
+			System.out.println("Ebbõl elhelyezett: " + elhelyezett);
 			System.out.println("Kiskutyák akiket nem lehetett elhelyezni: ");
 			if(kisKutyaAkikNem != null) {
 				for(Kutya k : kisKutyaAkikNem) {
@@ -141,7 +172,7 @@ public class Test {
 		int spanielHim = 0;
 		int spanielNosteny = 0;
 		int spanielTorzskonyv = 0;
-		for(int i = 0; i < ktelep.darabszam; i++) {
+		for(int i = 0; i < ktelep.getDarabszam(); i++) {
 			Kutya k = ktelep.lekerdez(i);
 			if(k.isTorzskonyvezett()) {
 				torzskonyvezett++;

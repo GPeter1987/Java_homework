@@ -26,12 +26,7 @@ public class Kutya {
 	
 	/* Getterek és setterek */
 	
-/*	public faj getFajta() {
-		return fajta;
-	}
-	public void setFajta(faj f) {
-		fajta = f;
-	} */
+
 	public boolean isHim() {
 		return him;
 	}
@@ -134,7 +129,17 @@ public class Kutya {
 			for(int i =0; i < kisKutyaSzam; i++) {
 				boolean kisKutyaNeme = (rnd.nextInt(100-1)+1) < 50;
 				
-				Kutya kis_Kutya = new Kutya(this.fajta,kisKutyaNeme,kisKutyaTorzskonyv,a,this,1);
+				Kutya apa, anya;
+                if(a.isHim()){
+                    apa=a;
+                    anya=this;
+                }
+                else{
+                    apa=this;
+                    anya=a;
+                }
+				
+				Kutya kis_Kutya = new Kutya(this.fajta,kisKutyaNeme,kisKutyaTorzskonyv,apa,anya,1);
 				kisKutya.add(kis_Kutya);
 			}
 			//	System.out.println(kisKutya);
