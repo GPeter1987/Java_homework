@@ -1,6 +1,6 @@
 package franciaSakk;
 
-public interface Sakk {
+public interface Babu {
 
 	public enum Csapat {
 		SOTET,
@@ -8,6 +8,12 @@ public interface Sakk {
 	}
 	
 	int[] pozicio = new int[2];
+	
+	public int getPozicioX();
+	public int getPozicioY();
+	public void setPozicioX(int x);
+	public void setPozicioY(int y);
+	
 	
 	/**
 	 * ütés függvény, paramétere a sakktáblán még 

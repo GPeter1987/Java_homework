@@ -1,28 +1,26 @@
 package franciaSakk;
 
-public class Gyalog implements Babu{
-	
-	
+public class Futo implements Babu{
 	
 
-	public Gyalog(int x, int y) {
+	
+	public Futo(int x, int y) {
 		
 		this.pozicio[0] = x;
 		this.pozicio[1] = y;
 		
 		
 	}
-	
 
 	@Override
 	public void utes() {
-		
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void lepes() {
-		
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -49,7 +47,5 @@ public class Gyalog implements Babu{
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 
 }

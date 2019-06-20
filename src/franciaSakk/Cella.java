@@ -7,6 +7,7 @@ public class Cella {
 	private int x;
 	private int y;
 	
+	
 	public int getX() {
 		return x;
 	}
@@ -28,11 +29,23 @@ public class Cella {
 			throw new Exception("Az értéknek 1 és 8 közti számnak kell lennie.");
 		}
 	}
+	
+	
+	
 	/**
 	 * Konstruktor
 	 */
 	public Cella(int x, int y) throws Exception {
 		setX(x);
 		setY(y);
+		
 	}
+	
+	@Override 
+	public String toString() {
+		return "Cella: X = " + getX() + " , Y = " + getY();
+		
+	}
+		
+	
 }
