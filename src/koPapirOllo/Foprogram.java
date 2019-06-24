@@ -46,8 +46,15 @@ public class Foprogram {
 		// Játékok engedélyezése
 		for(int i = 0; i < 100; i++) {
 			Biro a = kaszino.bLista.get(rnd.nextInt(10));
-			a.lebonyolit(kaszino.jLista.get(rnd.nextInt(kaszino.getMaxJatekos())), 
-						 kaszino.jLista.get(rnd.nextInt(kaszino.getMaxJatekos())));
+			
+			KinaiJatekos jatekos = kaszino.jLista.get(rnd.nextInt(kaszino.getMaxJatekos()));
+			KinaiJatekos jatekos2 = kaszino.jLista.get(rnd.nextInt(kaszino.getMaxJatekos()));
+			
+			while(jatekos.getRizsMenny() >= 3 && jatekos2.getRizsMenny() >= 3) {
+				jatekos.felmutat();
+				jatekos2.felmutat();
+				a.lebonyolit(jatekos, jatekos2);
+			}
 		}
 		
 		// kiírja, hány játékos ment tönkre (kevesebb mint 3 rizse maradt), 

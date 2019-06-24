@@ -14,6 +14,9 @@ public class Biro {
 	public int getJutalek() {
 		return jutalek;
 	}
+	public void setJutalek(int a) {
+		 this.jutalek = this.getJutalek() + a;
+	 }
 
 	/**
 	 * @throws Exception 
@@ -21,8 +24,8 @@ public class Biro {
 	 */
 	public void lebonyolit(KinaiJatekos jatekos1, KinaiJatekos jatekos2) throws Exception {
 		
-		
-		
+		//jatekos1.felmutat();
+		//jatekos2.felmutat();
 		// Ellenõrizzük ,hogy mind a két játékos rendelkezik-e minimum 3 rizzsel.
 		if(jatekos1.getRizsMenny()>= 3 && jatekos2.getRizsMenny()>= 3) {
 			
@@ -52,7 +55,10 @@ public class Biro {
 				}
 			}
 			else if(jatekos1.getVissza() == jatekos2.getVissza()) {
-				System.out.println("Döntetlen.");
+				System.out.println(jatekos1 +  " Döntetlent jatszott. " + jatekos2 + "-vel.");
+			}
+			else if(jatekos1.getRizsMenny()<3 || jatekos2.getRizsMenny()<3) {
+				System.out.println("Az egyik játékos tönkre ment.");
 			}
 		}
 		

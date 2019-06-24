@@ -4,12 +4,15 @@ import koPapirOllo.KinaiJatekos.Visszateres;
 
 public class MaffiaBiro extends Biro{
 	
-	int jutalek = 0;
+	private int jutalek = 0;
 	boolean maffia = true;
 	
 	public int getJutalek() {
 		return jutalek;
 	}
+	 public void setJutalek(int a) {
+		 this.jutalek = this.getJutalek() + a;
+	 }
 	
 	public boolean isMaffia() {
 		return maffia;
@@ -49,9 +52,12 @@ public void lebonyolit(KinaiJatekos jatekos1, KinaiJatekos jatekos2) throws Exce
 				jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); 
 				jatekos1.setRizsMenny(jatekos1.getRizsMenny()-1);
 				
-				jutalek += 2;
+				this.setJutalek(getJutalek()+2);
 				
 				System.out.println("Döntetlen.");
+			}
+			else if(jatekos1.getRizsMenny()<3 || jatekos2.getRizsMenny()<3) {
+				System.out.println("Az egyik játékos tönkre ment.");
 			}
 		}
 		

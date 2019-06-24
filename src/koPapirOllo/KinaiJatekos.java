@@ -100,6 +100,7 @@ public class KinaiJatekos {
 		}else {
 			this.vissza = Visszateres.PAPIR;
 		}
+		System.out.println(vissza);
 	
 	}
 	
