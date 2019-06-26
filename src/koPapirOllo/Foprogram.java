@@ -16,16 +16,16 @@ public class Foprogram {
 		JatekBarlang kaszino= new JatekBarlang(60,10); 
 		
 		// Játékosok generálása
-		for(int i = 0; i <= kaszino.getMaxJatekos(); i++) {
+		for(int i = 0; i < kaszino.getMaxJatekos(); i++) {
 			int szam = rnd.nextInt(100);
 			
 			if(szam <= 30) {
 				FixKinaiJatekos fix = new FixKinaiJatekos(5,5,Visszateres.OLLO);
-				kaszino.jLista.add(fix);
+				kaszino.jatekosHozzaad(fix);
 			}
-			else if(szam > 30 && szam <= 100) {
+			else if(szam > 30 && szam < 100) {
 				KinaiJatekos jatekos = new KinaiJatekos(5,5);
-				kaszino.jLista.add(jatekos);
+				kaszino.jatekosHozzaad(jatekos);
 			}
 		}
 		
@@ -35,11 +35,11 @@ public class Foprogram {
 			
 			if(szam <= 80) {
 				Biro biro = new Biro();
-				kaszino.bLista.add(biro);
+				kaszino.biroHozzaAd(biro);
 			}
-			else if(szam > 80 && szam <= 100) {
+			else if(szam > 80 && szam < 100) {
 				MaffiaBiro mBiro = new MaffiaBiro();
-				kaszino.bLista.add(mBiro);
+				kaszino.biroHozzaAd(mBiro);
 			}
 		}
 		

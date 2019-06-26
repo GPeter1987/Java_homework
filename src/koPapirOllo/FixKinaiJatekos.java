@@ -11,7 +11,7 @@ public class FixKinaiJatekos extends KinaiJatekos {
 	}
 	
 	public Visszateres getVissza() {
-		return vissza;
+		return this.vissza;
 		
 	}
 

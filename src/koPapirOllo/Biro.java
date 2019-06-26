@@ -19,8 +19,7 @@ public class Biro {
 	 }
 
 	/**
-	 * @throws Exception 
-	 * 
+	 *  
 	 */
 	public void lebonyolit(KinaiJatekos jatekos1, KinaiJatekos jatekos2) throws Exception {
 		

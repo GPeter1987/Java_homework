@@ -18,7 +18,8 @@ public class MaffiaBiro extends Biro{
 		return maffia;
 	}
 	
-public void lebonyolit(KinaiJatekos jatekos1, KinaiJatekos jatekos2) throws Exception {
+	@Override
+	public void lebonyolit(KinaiJatekos jatekos1, KinaiJatekos jatekos2) throws Exception {
 		
 		// Ellenõrizzük ,hogy mind a két játékos rendelkezik-e minimum 3 rizzsel.
 		if(jatekos1.getRizsMenny()>= 3 && jatekos2.getRizsMenny()>= 3) {

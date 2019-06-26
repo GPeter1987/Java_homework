@@ -90,7 +90,7 @@ public class KinaiJatekos {
 	 * enum: a függvény visszatérési értéke kõ, papír, vagy olló, 
 	 * attól függõen a játékos épp mit mutatott fel
 	 */
-	public void felmutat() {
+	public Enum felmutat() {
 		int valasztas = rnd.nextInt((3-1)+1);
 		if(valasztas == 1) {
 			this.vissza = Visszateres.KO;
@@ -101,7 +101,7 @@ public class KinaiJatekos {
 			this.vissza = Visszateres.PAPIR;
 		}
 		System.out.println(vissza);
-	
+		return this.vissza;
 	}
 	
 	/**
