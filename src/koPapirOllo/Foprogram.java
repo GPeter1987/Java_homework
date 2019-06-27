@@ -30,7 +30,7 @@ public class Foprogram {
 		}
 		
 		// Bírók generálása
-		for(int i = 0; i <= kaszino.getMaxBiro(); i++) {
+		for(int i = 0; i < kaszino.getMaxBiro(); i++) {
 			int szam = rnd.nextInt(100);
 			
 			if(szam <= 80) {
@@ -49,10 +49,13 @@ public class Foprogram {
 			
 			KinaiJatekos jatekos = kaszino.jLista.get(rnd.nextInt(kaszino.getMaxJatekos()));
 			KinaiJatekos jatekos2 = kaszino.jLista.get(rnd.nextInt(kaszino.getMaxJatekos()));
-			
-			while(jatekos.getRizsMenny() >= 3 && jatekos2.getRizsMenny() >= 3) {
-				jatekos.felmutat();
-				jatekos2.felmutat();
+			/* A játékosok addig játszanak amíg valaki nem megy tönkre vagy nem éri el
+			 * a mohóságának megfelelõ mennyiségû nyereményt.
+			 */
+			while((jatekos.getRizsMenny() >= 3 && jatekos2.getRizsMenny() >= 3) || 
+					(jatekos.getMohosag()*10 == jatekos.getRizsMenny()) || 
+					(jatekos2.getMohosag()*10 == jatekos2.getRizsMenny())) {
+				
 				a.lebonyolit(jatekos, jatekos2);
 			}
 		}
@@ -78,9 +81,9 @@ public class Foprogram {
 		
 		// és a maffia bírók összesen hány rizst gyûjtöttek be. 
 		int begyujtott = 0;
-		for(int i = 0; i < kaszino.bLista.size(); i++) {
-			if(kaszino.bLista.get(i).maffia ) {
-				begyujtott += kaszino.bLista.get(i).getJutalek();
+		for(Biro b : kaszino.bLista) {
+			if(b.isMaffia() ) {
+				begyujtott += b.getJutalek();
 			}
 		}
 		System.out.println(begyujtott + " db rizst gyûjtötek a maffia bírók.");

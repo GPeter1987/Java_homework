@@ -28,36 +28,58 @@ public class Biro {
 		// Ellenõrizzük ,hogy mind a két játékos rendelkezik-e minimum 3 rizzsel.
 		if(jatekos1.getRizsMenny()>= 3 && jatekos2.getRizsMenny()>= 3) {
 			
+			jatekos1.vissza = jatekos1.felmutat();
+			jatekos2.vissza = jatekos2.felmutat();
+			
+			System.out.println("Bíró: "+jatekos1.toString().split("@")[1]+": "+
+					jatekos1.getVissza()+", "+jatekos2.toString().split("@")[1]+": "+
+					jatekos2.getVissza());
+			//Ha a játékosok nem ugyan azt mutatták fel.
 			if(jatekos1.getVissza() != jatekos2.getVissza()) {
-				if(jatekos1.getVissza() == Visszateres.KO && 
-				   jatekos2.getVissza() == Visszateres.OLLO) {
-					jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
-					jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
-					System.out.println(jatekos1 + " Gyõzött");
+				// Ha Követ mutattunk
+				if(jatekos1.getVissza() == Visszateres.KO ) {
+					if(jatekos2.getVissza() == Visszateres.OLLO) {
+						jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
+						jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
+						System.out.println(jatekos1 + " Gyõzött");
+					}else {
+						jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
+						jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
+						System.out.println(jatekos1 + " Gyõzött");
+					}
+				// Ha papírt mutattunk
+				}else if(jatekos1.getVissza() == Visszateres.PAPIR) {
+					if(jatekos2.getVissza() == Visszateres.KO) {
+						jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
+						jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
+						System.out.println(jatekos1 + " Gyõzött");
+					}else {
+						jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
+						jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
+						System.out.println(jatekos1 + " Gyõzött");
+					}
+				// Ha ollót mutatunk
+				}else {
+					if(jatekos2.getVissza() == Visszateres.KO) {
+						jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
+						jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
+						System.out.println(jatekos1 + " Gyõzött");
+					}else {
+						jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
+						jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
+						System.out.println(jatekos1 + " Gyõzött");
+					}
 				}
-				else if(jatekos1.getVissza() == Visszateres.OLLO && 
-						   jatekos2.getVissza() == Visszateres.PAPIR) {
-							jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
-							jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
-							System.out.println(jatekos1 + " Gyõzött");
+				// Ha valakinek már nincs minimum 3 rizse
+				if(jatekos1.getRizsMenny() < 3 || jatekos2.getRizsMenny() < 3) {
+					System.out.println("Az egyik játékos tönkre ment.");
 				}
-				else if(jatekos1.getVissza() == Visszateres.PAPIR && 
-						   jatekos2.getVissza() == Visszateres.KO) {
-							jatekos1.setRizsMenny(jatekos1.getRizsMenny()+1); // Gyõztes +1
-							jatekos2.setRizsMenny(jatekos2.getRizsMenny()-1); // Vesztes -1
-							System.out.println(jatekos1 + " Gyõzött");
-				}
-				else {
-					jatekos2.setRizsMenny(jatekos2.getRizsMenny()+1); // Gyõztes +1
-					jatekos1.setRizsMenny(jatekos1.getRizsMenny()-1); // Vesztes -1
-					System.out.println(jatekos2 + " Gyõzött");
-				}
+				
 			}
-			else if(jatekos1.getVissza() == jatekos2.getVissza()) {
-				System.out.println(jatekos1 +  " Döntetlent jatszott. " + jatekos2 + "-vel.");
-			}
-			else if(jatekos1.getRizsMenny()<3 || jatekos2.getRizsMenny()<3) {
-				System.out.println("Az egyik játékos tönkre ment.");
+			//Ha ugyan azt mutatták
+			else {
+				System.out.println(jatekos1.toString().split("@")[1] +  " Döntetlent játszott" + 
+									jatekos2.toString().split("@")[1] + "-vel.");
 			}
 		}
 		

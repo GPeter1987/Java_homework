@@ -52,7 +52,7 @@ public class KinaiJatekos {
 	}
 
 	public void setMohosag(int mohosag) throws Exception {
-		if(mohosag >= 2 && mohosag <= 10) {
+		if(mohosag > 2 && mohosag < 10) {
 			this.mohosag = mohosag;
 		}else {
 			throw new Exception("A mohóság értéke 2 és 10 közé kell ,hogy essen.");
@@ -90,18 +90,19 @@ public class KinaiJatekos {
 	 * enum: a függvény visszatérési értéke kõ, papír, vagy olló, 
 	 * attól függõen a játékos épp mit mutatott fel
 	 */
-	public Enum felmutat() {
+	public Visszateres felmutat() {
 		int valasztas = rnd.nextInt((3-1)+1);
 		if(valasztas == 1) {
-			this.vissza = Visszateres.KO;
+		//	this.vissza = Visszateres.KO;
+			return Visszateres.KO;
 		}
 		else if(valasztas == 2) {
-			this.vissza = Visszateres.OLLO;
+		//	this.vissza = Visszateres.OLLO;
+			return Visszateres.OLLO;
 		}else {
-			this.vissza = Visszateres.PAPIR;
+		//	this.vissza = Visszateres.PAPIR;
+			return Visszateres.PAPIR;
 		}
-		System.out.println(vissza);
-		return this.vissza;
 	}
 	
 	/**
