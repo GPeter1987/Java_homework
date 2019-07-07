@@ -7,8 +7,8 @@ public class Animal {
 	/**
 	 * 	Minden állat tud:
 	 * 	x	- mozogni
-	 * 		- szaporodni
-	 * 		- öregedni
+	 * 	x	- szaporodni
+	 * 	x	- öregedni
 	 * 		- enni (Evés nélkül kibír:	ragadozó: 1 évet
 	 * 									növényevõ: mindig tud enni)
 	 * 	x	- élemég
@@ -67,10 +67,15 @@ public class Animal {
 	}
 	public void setHunger(int x) {
 		if(this.getHunger() >= 0 && (this.getHunger() + x) <= 100) {
-			this.hunger = x;
+			this.hunger = this.getHunger() + x;
 		}else {
 			System.out.println("Az éhség nem lehet több mint 100 vagy kevesebb mint 0!");
 		}
+	}
+	
+	public int eating() {
+		this.setHunger(1);
+		return hunger;
 	}
 	
 	
