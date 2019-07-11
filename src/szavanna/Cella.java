@@ -3,10 +3,10 @@ package szavanna;
 public class Cella {
 	/**
 	 * 	Tulajdonságok:
-	 * 		- x koordináta
-	 * 		- y koordináta
-	 * 		- Üres e
-	 * 		- Mi van rajta ha nem üres
+	 * 	x	- x koordináta
+	 * 	x	- y koordináta
+	 * 	x	- Üres e
+	 * 	x	- Mi van rajta ha nem üres
 	 */
 	
 	/**
@@ -76,7 +76,20 @@ public class Cella {
 		this.setEmpty(true);
 		this.setWhatsIn(true);
 	}
-
 	
-
+	
+	@Override
+	public String toString() {
+		String pic = null;
+		if(this.empty) {
+			pic = ".";
+		}
+		else if(!this.empty && this.whatsIn) {
+			pic = "R";
+		}
+		else if(!this.empty && !this.whatsIn) {
+			pic = "N";
+		}
+		return pic;
+	}
 }

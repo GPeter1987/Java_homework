@@ -9,20 +9,51 @@ public class Animal {
 	 * 	x	- mozogni
 	 * 	x	- szaporodni
 	 * 	x	- öregedni
-	 * 		- enni (Evés nélkül kibír:	ragadozó: 1 évet
+	 * 	x	- enni (Evés nélkül kibír:	ragadozó: 1 évet
 	 * 									növényevõ: mindig tud enni)
 	 * 	x	- élemég
 	 * 	x	- szaporodás óta eltelt idõ
-	 * 		- szaporodási kedv
+	 * 	x	- szaporodási kedv
 	 * 
 	 * 	Minden állat rendelkezik:
-	 * 		- Kor (nem lehet negatív és max 1000)
-	 * 		- Max életkor (	ragadozó: 9-12 év,
-	 * 						növényevõ: 11-14 év)
-	 * 		- Nemmel
-	 * 		- Éhség (ragadozónál ha eléri a kettõt akkor elpusztul)
+	 * 	x	- Kor (nem lehet negatív és max 1000)
+	 * 	x	- Nemmel
+	 * 	x	- Éhség (ragadozónál ha eléri a kettõt akkor elpusztul)
 	 */
 	//===================================================================
+	
+	Random rnd = new Random();
+	
+	// Konstruktor
+	public Animal(	int pos0,
+					int pos1,
+					boolean tof,
+					int hunger,
+					boolean sex,
+					int age,
+					int last,
+					boolean mod) {
+		this.setPosition(pos0, pos1);
+		this.setLive(tof);
+		this.setHunger(0);
+		this.setSex(sex);
+		this.setAge(age);
+		this.setLastReproduction(last);
+		this.setMod(mod);
+		
+	}
+	
+	public Animal(int x, int y) {
+		this.setPosition(x, y);
+		this.setLive(true);
+		this.setHunger(0);
+		this.setSex(rnd.nextBoolean());
+		this.setAge(1);
+		this.setLastReproduction(0);
+		this.setMod(true);
+		
+	}
+	
 	/**
 	 * A position egy 2 int-et tartalmazó
 	 * array ami azt mutatja melyik mátrix
@@ -88,7 +119,6 @@ public class Animal {
 	 * @return : Az elmozdulás mértéke
 	 */
 	public int[] move(int step) {
-		Random rnd = new Random();
 		int moveDirection = rnd.nextInt(10-1)+1;
 		if(moveDirection < 5) {
 			this.setPosition(step, 0);
@@ -102,6 +132,13 @@ public class Animal {
 	 * 	Ha nõstény akkor false
 	 */
 	private boolean sex;
+	
+	public boolean getSex() {
+		return this.sex;
+	}
+	public void setSex(boolean sex) {
+		this.sex = sex;
+	}
 	
 	/**
 	 * 	Az állat kora
@@ -119,6 +156,16 @@ public class Animal {
 		}else {
 			System.out.println("Az állat életkora nem lehet negatív és több sem lehet 1000-nél!");
 		}
+	}
+	
+	private int maxAge;
+	
+	public int getMaxAge() {
+		return this.maxAge;
+	}
+	
+	public void setMaxAge() {
+		this.maxAge = rnd.nextInt(14-9)+9;
 	}
 	/**
 	 * Eltároljuk, hogy az állat mikor szaporodott 
@@ -169,5 +216,14 @@ public class Animal {
 								Animal female) {
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return "Kor: " + this.age + 
+				"Elérhetõ max kor: " + this.getMaxAge() + 
+				"neme: " + this.sex;
+	}
 
 }
+
+	
